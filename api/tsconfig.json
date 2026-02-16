@@ -1,0 +1,8 @@
+﻿{
+  "extends": "../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "../dist/api",
+    "types": ["node", "@playwright/test"]
+  },
+  "include": ["src/**/*.ts", "../config/**/*.ts", "../shared/**/*.ts"]
+}

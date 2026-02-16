@@ -1,0 +1,13 @@
+﻿node_modules/
+reports/
+test-results/
+playwright-report/
+coverage/
+.env.local
+.env.qa
+.env.prod
+
+# OS / IDE
+.DS_Store
+Thumbs.db
+.vscode/
