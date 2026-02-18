@@ -9,6 +9,10 @@ export class CartPage extends BasePage {
     await expect(this.page.locator(this.cartItemNames)).toContainText([productName]);
   }
 
+  async validateProductsInCart(productNames: string[]): Promise<void> {
+    await expect(this.page.locator(this.cartItemNames)).toContainText(productNames);
+  }
+
   async continueToCheckout(): Promise<void> {
     await this.click(this.checkoutButton);
   }

@@ -14,6 +14,11 @@ export class InventoryPage extends BasePage {
     await this.click("#add-to-cart-sauce-labs-backpack");
   }
 
+  async addProductToCartByName(productName: string): Promise<void> {
+    const buttonId = productName.toLowerCase().replace(/ /g, "-");
+    await this.click(`#add-to-cart-${buttonId}`);
+  }
+
   async validateCartCount(expected: string): Promise<void> {
     await expect(this.page.locator(this.cartBadge)).toHaveText(expected);
   }

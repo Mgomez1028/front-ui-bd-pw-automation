@@ -12,7 +12,8 @@
     "test:api": "cross-env TEST_ENV=local playwright test --config=api/playwright.config.ts",
     "test:api:qa": "cross-env TEST_ENV=qa playwright test --config=api/playwright.config.ts",
     "test:api:prod": "cross-env TEST_ENV=prod playwright test --config=api/playwright.config.ts",
-    "test:all": "npm run test:front && npm run test:api"
+    "test:all": "npm run test:front && npm run test:api",
+    "report:front": "ts-node front/generate-report.ts"
   },
   "devDependencies": {
     "@cucumber/cucumber": "^11.2.0",
@@ -20,6 +21,7 @@
     "@types/node": "^22.15.3",
     "cross-env": "^7.0.3",
     "dotenv": "^16.5.0",
+    "multiple-cucumber-html-reporter": "^3.10.0",
     "playwright": "^1.53.0",
     "rimraf": "^6.0.1",
     "ts-node": "^10.9.2",

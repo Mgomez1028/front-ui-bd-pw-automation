@@ -7,6 +7,7 @@ import { InventoryPage } from "../pages/InventoryPage";
 import { LoginPage } from "../pages/LoginPage";
 import { CustomWorld } from "../support/world";
 
+
 type CheckoutData = {
   firstName: string;
   lastName: string;
