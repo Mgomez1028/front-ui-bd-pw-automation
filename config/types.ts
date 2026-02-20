@@ -1,4 +1,5 @@
 ﻿export type TestEnv = "local" | "qa" | "prod";
+export type BrowserName =  "chromium" | "firefox" | "webkit";
 
 export interface AppConfig {
   env: TestEnv;
@@ -12,4 +13,5 @@ export interface AppConfig {
   apiToken?: string;
   e2eUsername: string;
   e2ePassword: string;
+  frontBrowser: BrowserName;
 }

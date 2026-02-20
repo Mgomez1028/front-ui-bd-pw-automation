@@ -1,10 +1,12 @@
 ﻿import { config } from "../../../config";
 import { AfterAll, BeforeAll } from "@cucumber/cucumber";
-import { chromium } from "playwright";
+import { chromium, firefox, webkit } from "playwright";
 import { uiContext } from "../support/testContext";
 
+const browsers = { chromium, firefox, webkit };
+
 BeforeAll(async () => {
-  uiContext.browser = await chromium.launch({
+  uiContext.browser = await browsers[config.frontBrowser].launch({
     headless: config.frontHeadless,
     slowMo: config.frontSlowMoMs
   });
