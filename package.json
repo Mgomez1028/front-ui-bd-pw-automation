@@ -1,14 +1,15 @@
 {
   "name": "automation-playwright",
   "version": "1.0.0",
+  "type": "commonjs",
   "description": "Automation framework with Playwright, Cucumber, TypeScript using POM for frontend and Service Model for API",
   "private": true,
   "scripts": {
     "clean": "rimraf reports test-results",
     "build": "tsc -p front/tsconfig.json --noEmit && tsc -p api/tsconfig.json --noEmit",
-    "test:front": "cross-env TEST_ENV=local cucumber-js --config front/cucumber.js",
-    "test:front:qa": "cross-env TEST_ENV=qa cucumber-js --config front/cucumber.js",
-    "test:front:prod": "cross-env TEST_ENV=prod cucumber-js --config front/cucumber.js",
+    "test:front": "cross-env TEST_ENV=local TS_NODE_PROJECT=front/tsconfig.json cucumber-js --config front/cucumber.js",
+    "test:front:qa": "cross-env TEST_ENV=qa TS_NODE_PROJECT=front/tsconfig.json cucumber-js --config front/cucumber.js",
+    "test:front:prod": "cross-env TEST_ENV=prod TS_NODE_PROJECT=front/tsconfig.json cucumber-js --config front/cucumber.js",
     "test:api": "cross-env TEST_ENV=local playwright test --config=api/playwright.config.ts",
     "test:api:qa": "cross-env TEST_ENV=qa playwright test --config=api/playwright.config.ts",
     "test:api:prod": "cross-env TEST_ENV=prod playwright test --config=api/playwright.config.ts",
