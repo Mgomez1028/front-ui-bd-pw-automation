@@ -1,9 +1,18 @@
 ﻿import fs from "node:fs";
 import path from "node:path";
 import dotenv from "dotenv";
-import { AppConfig, TestEnv } from "./types";
+import { AppConfig, BrowserName, TestEnv } from "./types";
 
 const VALID_ENVS: TestEnv[] = ["local", "qa", "prod"];
+const VALID_BROWSERS: BrowserName[] = ["chromium", "firefox", "webkit"];
+
+function parseBrowser(): BrowserName {
+   const raw = (process.env.FRONT_BROWSER ?? "chromium") as BrowserName;
+   if (!VALID_BROWSERS.includes(raw)) {
+     throw new Error(`Invalid FRONT_BROWSER: ${raw}. Valid values are: ${VALID_BROWSERS.join(", ")}`);
+   }
+   return raw;
+ }
 
 function loadEnvFile(filePath: string): void {
   if (fs.existsSync(filePath)) {
@@ -58,6 +67,7 @@ function loadConfig(): AppConfig {
     frontPassword: required("FRONT_PASSWORD"),
     frontHeadless: parseBoolean(optional("FRONT_HEADLESS", "true")),
     frontSlowMoMs: Number(optional("FRONT_SLOWMO_MS", "0")),
+    frontBrowser: parseBrowser(),
     apiBaseUrl: required("API_BASE_URL"),
     apiTimeout: Number(required("API_TIMEOUT")),
     apiToken: process.env.API_TOKEN,
