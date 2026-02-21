@@ -118,3 +118,29 @@ Then(
     await cartPage.validateProductsInCart(products);
   }
 );
+
+When(
+  /^the user removes "([^"]*)" from the cart$/,
+  async function (this: CustomWorld, productName: string) {
+    if (!this.page) {
+      throw new Error("Playwright page is not initialized");
+    }
+
+    const cartPage = new CartPage(this.page);
+    await cartPage.removeProductFromCartByName(productName);
+    //await this.page!.waitForTimeout(500); // Espera para que el DOM se actualice
+    //await this.page!.reload(); // Recarga la página para reflejar los cambios
+    //await this.page!.pause
+  }
+);
+
+Then(
+  /^the cart should be empty$/,
+  async function (this: CustomWorld) {
+    if (!this.page) {
+      throw new Error("Playwright page is not initialized");
+    }
+
+    const cartPage = new CartPage(this.page);
+    await cartPage.validateCartIsEmpty();
+});
