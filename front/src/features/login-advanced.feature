@@ -53,3 +53,17 @@ Feature: SauceDemo login scenarios
       | Sauce Labs Backpack      |
       | Sauce Labs Bike Light    |
       | Sauce Labs Bolt T-Shirt  |
+
+  Scenario: Remove product from cart and validate
+    Given the user opens SauceDemo login page
+    When the user logs in with username "standard_user" and password "secret_sauce"
+    And the user adds the following products to the cart:
+      | productName              |
+      | Sauce Labs Fleece Jacket |
+    Then the cart should contain the following products:
+      | productName              |
+      | Sauce Labs Fleece Jacket |
+    When the user removes "Sauce Labs Fleece Jacket" from the cart
+    #Then the cart badge should show "0" items
+    Then the cart should be empty
+
